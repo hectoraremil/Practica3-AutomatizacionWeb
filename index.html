@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hola Mundo - Landing Page .NET</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f1020;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    header {
+      width: 100%;
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(15, 16, 32, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #9b7cff;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #9b7cff;
+      opacity: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 140px 8% 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: 50px;
+      background:
+        radial-gradient(circle at top left, rgba(155, 124, 255, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0, 200, 255, 0.18), transparent 30%);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-content h1 span {
+      color: #9b7cff;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      max-width: 620px;
+      color: #d8d8e8;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #9b7cff;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(155, 124, 255, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #8061f5;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      border-color: #9b7cff;
+      color: #9b7cff;
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .code-box {
+      background: #111827;
+      border-radius: 18px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: "Courier New", monospace;
+      color: #c7d2fe;
+    }
+
+    .code-box .green {
+      color: #4ade80;
+    }
+
+    .code-box .blue {
+      color: #60a5fa;
+    }
+
+    .code-box .purple {
+      color: #c084fc;
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.3rem;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: #c7c7d8;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: #9b7cff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card h3 {
+      color: #9b7cff;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .feature-card p {
+      color: #d1d1df;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: linear-gradient(135deg, rgba(155, 124, 255, 0.25), rgba(0, 200, 255, 0.12));
+      padding: 40px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .about-box h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .about-box p {
+      color: #e0e0ee;
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 24px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      font-size: 2rem;
+      color: #9b7cff;
+    }
+
+    .stat p {
+      color: #d1d1df;
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #6d5dfc, #9b7cff);
+      border-radius: 28px;
+      margin: 60px 8%;
+      padding: 70px 30px;
+    }
+
+    .cta h2 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      color: #f2f2ff;
+      margin-bottom: 28px;
+    }
+
+    .cta .btn {
+      background: #ffffff;
+      color: #5b45d9;
+      display: inline-block;
+    }
+
+    footer {
+      padding: 30px 8%;
+      text-align: center;
+      color: #b8b8c9;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 900px) {
+      header {
+        position: static;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 80px;
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .features,
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 20px;
+      }
+
+      .code-box {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">.NET Landing</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#caracteristicas">Características</a>
+      <a href="#acerca">Acerca de .NET</a>
+      <a href="#publicacion">GitHub Pages</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <h1>Hola Mundo con <span>.NET</span></h1>
+        <p>
+          .NET es una plataforma moderna de desarrollo creada por Microsoft que permite construir aplicaciones web,
+          APIs, aplicaciones de escritorio, móviles, servicios en la nube y soluciones empresariales de alto rendimiento.
+        </p>
+
+        <div class="buttons">
+          <a href="#caracteristicas" class="btn btn-primary">Explorar características</a>
+          <a href="#publicacion" class="btn btn-secondary">Ver despliegue</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="code-box">
+          <p><span class="green">// Programa básico en C#</span></p>
+          <br>
+          <p><span class="purple">using</span> System;</p>
+          <br>
+          <p><span class="blue">Console</span>.WriteLine(<span class="green">"Hola Mundo desde .NET"</span>);</p>
+          <br>
+          <p><span class="green">// Moderno, rápido y multiplataforma</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="caracteristicas">
+      <div class="section-title">
+        <h2>¿Por qué usar .NET?</h2>
+        <p>
+          .NET es una tecnología sólida para crear aplicaciones profesionales, seguras y escalables.
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <h3>Multiplataforma</h3>
+          <p>
+            Permite desarrollar aplicaciones que pueden ejecutarse en Windows, Linux y macOS.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Alto rendimiento</h3>
+          <p>
+            Es ideal para construir APIs rápidas, aplicaciones empresariales y servicios modernos en la nube.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Escalable</h3>
+          <p>
+            Se adapta a proyectos pequeños, medianos y grandes, desde una API simple hasta sistemas empresariales.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Seguro</h3>
+          <p>
+            Incluye herramientas para autenticación, autorización, validaciones, cifrado y buenas prácticas de seguridad.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Compatible con la nube</h3>
+          <p>
+            Funciona muy bien con servicios como Azure App Service, Azure Functions, Docker y DevOps.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Gran comunidad</h3>
+          <p>
+            Cuenta con documentación, soporte, paquetes NuGet y una comunidad activa de desarrolladores.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="acerca">
+      <div class="about-box">
+        <h2>Desarrollo web con ASP.NET Core</h2>
+        <p>
+          ASP.NET Core es el framework de .NET utilizado para crear aplicaciones web modernas,
+          APIs REST, sistemas MVC y servicios backend.
+        </p>
+        <p>
+          Gracias a su rendimiento y flexibilidad, es una excelente opción para proyectos empresariales,
+          paneles administrativos, sistemas internos, e-commerce y aplicaciones conectadas a bases de datos.
+        </p>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>C#</h3>
+          <p>Lenguaje principal</p>
+        </div>
+
+        <div class="stat">
+          <h3>API</h3>
+          <p>Ideal para servicios REST</p>
+        </div>
+
+        <div class="stat">
+          <h3>Cloud</h3>
+          <p>Preparado para la nube</p>
+        </div>
+
+        <div class="stat">
+          <h3>SQL</h3>
+          <p>Integración con bases de datos</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="publicacion">
+      <h2>Despliegue automático con GitHub Pages</h2>
+      <p>
+        Esta landing page puede publicarse automáticamente desde un repositorio de GitHub utilizando GitHub Pages.
+        Solo debes subir este archivo como <strong>index.html</strong> y activar GitHub Pages desde la configuración del repositorio.
+      </p>
+      <a href="https://pages.github.com/" class="btn" target="_blank">Conocer GitHub Pages</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Landing Page Informativa sobre .NET | Héctor Aremil Guzmán</p>
+  </footer>
+
+</body>
+</html>
